@@ -4,14 +4,24 @@ class Puzzle:
     def __init__(self, boardData):
         self.board = boardData #board is a 3x3 array (technically a list, but w/e)
 
-    #TODO: FILL OUT
     #Takes in itself, checks the board, and returns bool if the goal state or not
     def isGoal(self):
-        return False
+        i = 1
+        result = False
 
-    #TODO: Make a function for the move process
+        for row in range(len(self.board)):
+            for col in range(len(self.board[row])):
+                if(self.board[row][col] == i):
+                    i = i+1
+                
+        if(i == 9):
+            result = True
+        else:
+            result = False
+
+        return result
+
     #Takes in itself, returns list of possible moves to make
-    #TODO: should each new neighbor be a new object, or just return a list of the boards to check out?
     def getNeighbors(self):
         neighborBoards = [] #holds all the new boards we make
         holeRow = 0
@@ -73,11 +83,9 @@ class Puzzle:
     def getTile(self,row,col):
         return self.board[row][col]
 
+    #change the tile for the entire board's object (will NOT preserve current board state)
     def changeTile(self, newValue, row, col):
         self.board[row][col] = newValue
-
-    def copyBoard(self):
-        return self.board
 
     #TODO: FILL OUT
     #Takes in a different board, returns true if the same, false otherwise

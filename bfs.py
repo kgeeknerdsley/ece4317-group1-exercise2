@@ -11,11 +11,15 @@ from puzzle import Puzzle
 #print(stringVer)
 
 testPuzzle = Puzzle([[1,2,3],[4,5,0],[6,7,8]])
+wrongPuzzle = Puzzle([[4,2,1],[3,7,8],[6,5,0]])
 print("Unmodified board")
 testPuzzle.printBoard()
 
 print("Attempting to find neighbors")
 possibilities = testPuzzle.getNeighbors()
 print(possibilities)
+
+print(testPuzzle.isGoal())
+print(wrongPuzzle.isGoal())
 
 #testPuzzle.printBoard()
