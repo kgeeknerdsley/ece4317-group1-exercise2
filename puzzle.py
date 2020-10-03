@@ -38,7 +38,7 @@ class Puzzle:
                     holeRow = holeSearchR
                     holeCol = holeSearchC
 
-        print("Hole located at (" + str(holeRow) + " " + str(holeCol) + ")\n")
+        #print("Hole located at (" + str(holeRow) + " " + str(holeCol) + ")\n")
 
         #attempt up move
         if(holeRow-1 >= 0):
@@ -74,10 +74,20 @@ class Puzzle:
 
         return neighborBoards
 
-    #TODO: FILL OUT
     #Returns the Hamming code for itself
     def getHamming(self):
-        pass
+        i = 1
+        hamming = 0
+
+        for row in range(len(self.board)):
+            for col in range(len(self.board[row])):
+                if(self.board[row][col] != 0): #if we find the hole, skip it and don't increase i
+                    if(self.board[row][col] != i): #if a valid value doesn't match what it should be, add 1 to hamming
+                        hamming = hamming + 1
+                    
+                    i = i+1 #only increment when not 0
+            
+        return hamming
 
     #Takes in row and column, returns the value at that spot
     def getTile(self,row,col):
@@ -87,7 +97,6 @@ class Puzzle:
     def changeTile(self, newValue, row, col):
         self.board[row][col] = newValue
 
-    #TODO: FILL OUT
     #Takes in a different board, returns true if the same, false otherwise
     def boardsEqual(self, boardToCheck):
         pass
