@@ -4,6 +4,9 @@ class Puzzle:
     def __init__(self, boardData):
         self.board = boardData #board is a 3x3 array (technically a list, but w/e)
 
+    def getBoard(self):
+        return self.board
+
     #Takes in itself, checks the board, and returns bool if the goal state or not
     def isGoal(self):
         i = 1
@@ -99,7 +102,14 @@ class Puzzle:
 
     #Takes in a different board, returns true if the same, false otherwise
     def boardsEqual(self, boardToCheck):
-        pass
+        equal = True
+
+        for row in range(len(self.board)):
+            for col in range(len(self.board[row])):
+                if(self.board[row][col] != boardToCheck[row][col]):
+                    equal = False
+
+        return equal
 
     #Prints the board out in text
     def printBoard(self):
