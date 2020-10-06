@@ -49,7 +49,8 @@ class Puzzle:
             copiedBoard = copy.deepcopy(self.board)
             copiedBoard[holeRow-1][holeCol] = 0
             copiedBoard[holeRow][holeCol] = tempVal
-            neighborBoards.append(copiedBoard)
+            neighborBoards.append(Puzzle(copiedBoard))
+            print("Attempted up move and added to list")
         
         #attempt left move
         if(holeCol-1 >= 0):
@@ -57,7 +58,8 @@ class Puzzle:
             copiedBoard = copy.deepcopy(self.board)
             copiedBoard[holeRow][holeCol-1] = 0
             copiedBoard[holeRow][holeCol] = tempVal
-            neighborBoards.append(copiedBoard)
+            neighborBoards.append(Puzzle(copiedBoard))
+            print("Attempted left move and added to list")
 
         #attempt right move
         if(holeCol+1 <= 2):
@@ -65,17 +67,36 @@ class Puzzle:
             copiedBoard = copy.deepcopy(self.board)
             copiedBoard[holeRow][holeCol+1] = 0
             copiedBoard[holeRow][holeCol] = tempVal
-            neighborBoards.append(copiedBoard)
+            neighborBoards.append(Puzzle(copiedBoard))
+            print("Attempted right move and added to list")
 
-        #attempt right move
+        #attempt down move
         if(holeRow+1 <= 2):
             tempVal = self.getTile(holeRow+1, holeCol)
             copiedBoard = copy.deepcopy(self.board)
             copiedBoard[holeRow+1][holeCol] = 0
             copiedBoard[holeRow][holeCol] = tempVal
-            neighborBoards.append(copiedBoard)
+            neighborBoards.append(Puzzle(copiedBoard))
+            print("Attempted down move and added to list")
 
         return neighborBoards
+
+    #return the single neighbor with best hamming score
+    #this is priority function!
+    def getBestNeighbor(self, movesMade):
+        temp = 999999999
+        bestBoard = None
+
+        possibleOptions = self.getNeighbors()
+        
+        for boardUT in possibleOptions:
+            currentHamming = boardUT.getHamming() + movesMade
+            
+            if(temp > currentHamming):
+                temp = currentHamming
+                bestBoard = boardUT
+            
+        return bestBoard
 
     #Returns the Hamming code for itself
     def getHamming(self):
@@ -115,6 +136,8 @@ class Puzzle:
     def printBoard(self):
         for row in self.board:
             print(row)
+
+        
 
     #Returns a coherent string of the board, for mapping purposes
     def printBoardString(self):

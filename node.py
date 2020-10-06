@@ -11,10 +11,26 @@ class Node:
         pass
 
     def assignToChildren(self, nodeToChild):
-        pass
+        self.children.append(nodeToChild)
 
     def getChildren(self):
         return self.children
 
     def getParent(self):
         return self.parent
+
+    def isGoalNode(self):
+        return self.data.isGoal()
+
+    def getNextNode(self, movesMade):
+        nextMove = self.data.getBestNeighbor(movesMade)
+        print("Best solution has Hamming " + str(self.data.getHamming() + movesMade) + "\n")
+
+        return nextMove
+
+    def printCurrentNode(self):
+        if(type(self) == None):
+            print("Bad type for print")
+        else:
+            return self.data.printBoard()
+    
