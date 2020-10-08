@@ -9,9 +9,9 @@ import time
 # 2) Assign next neighbor to node
 # 3) Set neighbor as current node, repeat to 1
 
-initialPuzzle = Puzzle([[0,1,3],[4,2,5],[7,8,6]])
+#initialPuzzle = Puzzle([[0,1,3],[4,2,5],[7,8,6]])
 #initialPuzzle = Puzzle([[1,2,3],[0,4,6],[7,5,8]])
-#initialPuzzle = Puzzle([[6,4,1],[0,2,3],[7,8,5]])
+initialPuzzle = Puzzle([[2,8,3],[1,6,4],[7,0,5]]) #Assignment start state
 initialNode = Node(initialPuzzle, None, [])
 foundSolution = False
 
@@ -22,15 +22,15 @@ boardsAttempted = 0
 while(not foundSolution):
     currentNode.printCurrentNode()
 
-    isGoal = currentNode.isGoalNode()
+    isGoal = currentNode.isGoalNode() #check if our current node is the solution
 
-    if(isGoal):
+    if(isGoal): #if so, break out!
         print("Found solution! We outta here\n")
         print("Took " + str(boardsAttempted) + " attempts\n")
         currentNode.printCurrentNode()
         break
 
-    nextNode = Node(currentNode.getNextNode(), currentNode, [])
+    nextNode = Node(currentNode.getNextNode(), currentNode, []) #next node is the best possible child
     currentNode.assignToChildren(nextNode)
 
     currentNode = nextNode
@@ -39,5 +39,5 @@ while(not foundSolution):
     #time.sleep(5)
 
     if(boardsAttempted == 40000):
-        print("\nProbably unsolvable! It's broken bro")
+        print("\nThis board is likely unsolvable!")
         break

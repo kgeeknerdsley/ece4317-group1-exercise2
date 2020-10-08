@@ -9,22 +9,26 @@ class Puzzle:
 
     #Takes in itself, checks the board, and returns bool if the goal state or not
     def isGoal(self):
-        i = 1
-        result = False
+        goalBoard = [[1,2,3],[8,0,4],[7,6,5]] #Assignment goal board!
+        goalBoardInorder = [[1,2,3],[4,5,6],[7,8,0]]
+        return self.boardsEqual(goalBoard)
 
-        for row in range(len(self.board)):
-            for col in range(len(self.board[row])):
-                if(self.board[row][col] == i):
-                    i = i+1
-                elif(self.board[2][2] == 0):
-                    i = i+1
+        # i = 1
+        # result = False
+
+        # for row in range(len(self.board)):
+        #     for col in range(len(self.board[row])):
+        #         if(self.board[row][col] == i):
+        #             i = i+1
+        #         elif(self.board[2][2] == 0):
+        #             i = i+1
                 
-        if(i == 10):
-            result = True
-        else:
-            result = False
+        # if(i == 10):
+        #     result = True
+        # else:
+        #     result = False
 
-        return result
+        # return result
 
     #Takes in itself, returns list of possible moves to make
     def getNeighbors(self):
@@ -159,7 +163,7 @@ class Puzzle:
 
                 elif(self.board[row][col] == 4):
                     idealRow = 1
-                    idealCol = 0
+                    idealCol = 2
 
                     mRow = abs(idealRow - row)
                     mCol = abs(idealCol - col)
@@ -168,8 +172,8 @@ class Puzzle:
                     print("Manhattan for 4 is: " + str(mRow+mCol))
 
                 elif(self.board[row][col] == 5):
-                    idealRow = 1
-                    idealCol = 1
+                    idealRow = 2
+                    idealCol = 2
 
                     mRow = abs(idealRow - row)
                     mCol = abs(idealCol - col)
@@ -178,8 +182,8 @@ class Puzzle:
                     print("Manhattan for 5 is: " + str(mRow+mCol))
 
                 elif(self.board[row][col] == 6):
-                    idealRow = 1
-                    idealCol = 2
+                    idealRow = 2
+                    idealCol = 1
 
                     mRow = abs(idealRow - row)
                     mCol = abs(idealCol - col)
@@ -198,8 +202,8 @@ class Puzzle:
                     print("Manhattan for 7 is: " + str(mRow+mCol))
 
                 elif(self.board[row][col] == 8):
-                    idealRow = 2
-                    idealCol = 1
+                    idealRow = 1
+                    idealCol = 0
 
                     mRow = abs(idealRow - row)
                     mCol = abs(idealCol - col)
