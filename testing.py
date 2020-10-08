@@ -43,4 +43,7 @@ print("\nBest result of wrongPuzzle\n")
 #Show the best result of testPuzzle
 #print(wrongPuzzle.getBestNeighbor().printBoard())
 
-#testPuzzle.printBoard()
+testPuzzle.printBoard()
+
+print("\nTest puzzle Hamming: " + str(testPuzzle.getHamming()))
+print("\n Test puzzle Manhattan equals: " + str(testPuzzle.getManhattan()))

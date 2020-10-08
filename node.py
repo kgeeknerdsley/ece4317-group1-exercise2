@@ -22,9 +22,9 @@ class Node:
     def isGoalNode(self):
         return self.data.isGoal()
 
-    def getNextNode(self, movesMade):
-        nextMove = self.data.getBestNeighbor(movesMade)
-        print("Best solution has Hamming " + str(self.data.getHamming() + movesMade) + "\n")
+    def getNextNode(self):
+        nextMove = self.data.getBestNeighbor()
+        print("\nBest solution has Manhattan " + str(nextMove.getManhattan()))
 
         return nextMove
 

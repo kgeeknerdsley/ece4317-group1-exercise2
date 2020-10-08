@@ -16,8 +16,10 @@ class Puzzle:
             for col in range(len(self.board[row])):
                 if(self.board[row][col] == i):
                     i = i+1
+                elif(self.board[2][2] == 0):
+                    i = i+1
                 
-        if(i == 9):
+        if(i == 10):
             result = True
         else:
             result = False
@@ -83,17 +85,17 @@ class Puzzle:
 
     #return the single neighbor with best hamming score
     #this is priority function!
-    def getBestNeighbor(self, movesMade):
+    def getBestNeighbor(self):
         temp = 999999999
         bestBoard = None
 
         possibleOptions = self.getNeighbors()
         
         for boardUT in possibleOptions:
-            currentHamming = boardUT.getHamming() + movesMade
+            currentManhattan = boardUT.getManhattan()
             
-            if(temp > currentHamming):
-                temp = currentHamming
+            if(temp > currentManhattan):
+                temp = currentManhattan
                 bestBoard = boardUT
             
         return bestBoard
@@ -105,13 +107,109 @@ class Puzzle:
 
         for row in range(len(self.board)):
             for col in range(len(self.board[row])):
-                if(self.board[row][col] != 0): #if we find the hole, skip it and don't increase i
-                    if(self.board[row][col] != i): #if a valid value doesn't match what it should be, add 1 to hamming
+                if(self.board[row][col] != i):
+                    hamming = hamming + 1
+                elif(row == 2 and col == 2):
+                    if(self.board[row][col] != 0):
                         hamming = hamming + 1
-                    
-                    i = i+1 #only increment when not 0
+
+                i = i +1
             
         return hamming
+
+    def getManhattan(self):
+        i = 1
+        manhattan = 0
+
+        for row in range(len(self.board)):
+            for col in range(len(self.board[row])):
+
+                #1 case
+                if(self.board[row][col] == 1):
+                    idealRow = 0
+                    idealCol = 0
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 1 is: " + str(mRow+mCol))
+
+                #2 case
+                elif(self.board[row][col] == 2):
+                    idealRow = 0
+                    idealCol = 1
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 2 is: " + str(mRow+mCol))
+
+                #3 case
+                elif(self.board[row][col] == 3):
+                    idealRow = 0
+                    idealCol = 2
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 3 is: " + str(mRow+mCol))
+
+                elif(self.board[row][col] == 4):
+                    idealRow = 1
+                    idealCol = 0
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 4 is: " + str(mRow+mCol))
+
+                elif(self.board[row][col] == 5):
+                    idealRow = 1
+                    idealCol = 1
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 5 is: " + str(mRow+mCol))
+
+                elif(self.board[row][col] == 6):
+                    idealRow = 1
+                    idealCol = 2
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 6 is: " + str(mRow+mCol))
+
+                elif(self.board[row][col] == 7):
+                    idealRow = 2
+                    idealCol = 0
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 7 is: " + str(mRow+mCol))
+
+                elif(self.board[row][col] == 8):
+                    idealRow = 2
+                    idealCol = 1
+
+                    mRow = abs(idealRow - row)
+                    mCol = abs(idealCol - col)
+
+                    manhattan = manhattan + mRow + mCol
+                    print("Manhattan for 8 is: " + str(mRow+mCol))
+
+        return manhattan      
+
+
 
     #Takes in row and column, returns the value at that spot
     def getTile(self,row,col):
