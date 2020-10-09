@@ -10,25 +10,9 @@ class Puzzle:
     #Takes in itself, checks the board, and returns bool if the goal state or not
     def isGoal(self):
         goalBoard = [[1,2,3],[8,0,4],[7,6,5]] #Assignment goal board!
-        goalBoardInorder = [[1,2,3],[4,5,6],[7,8,0]]
+        goalBoardInorder = [[1,2,3],[4,5,6],[7,8,0]] #inorder goal board
+
         return self.boardsEqual(goalBoard)
-
-        # i = 1
-        # result = False
-
-        # for row in range(len(self.board)):
-        #     for col in range(len(self.board[row])):
-        #         if(self.board[row][col] == i):
-        #             i = i+1
-        #         elif(self.board[2][2] == 0):
-        #             i = i+1
-                
-        # if(i == 10):
-        #     result = True
-        # else:
-        #     result = False
-
-        # return result
 
     #Takes in itself, returns list of possible moves to make
     def getNeighbors(self):
@@ -213,8 +197,6 @@ class Puzzle:
 
         return manhattan      
 
-
-
     #Takes in row and column, returns the value at that spot
     def getTile(self,row,col):
         return self.board[row][col]
@@ -238,8 +220,6 @@ class Puzzle:
     def printBoard(self):
         for row in self.board:
             print(row)
-
-        
 
     #Returns a coherent string of the board, for mapping purposes
     def printBoardString(self):
