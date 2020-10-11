@@ -51,7 +51,7 @@ while (isGoalPuzzle == False):
     print(tempPuzzle.printBoard()) 
     print("\n")
 
-    if (tempPuzzle.isGoal()): #check if board is the goal one, if yes break the loop
+    if (tempPuzzle.isGoal()):                           #check if board is the goal one, if yes break the loop
         print("\n Found Goal board :")
         print(tempPuzzle.printBoard())
         isGoalPuzzle = True

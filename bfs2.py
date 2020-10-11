@@ -11,6 +11,9 @@ from collections import deque
 # 3) Place children into queue
 #    3a) Before placing, set the child's parent property to the current node
 
+#OBS: Children are not receiving the right parent node
+
+
 initialPuzzle = Puzzle([[2,8,3],[1,6,4],[7,0,5]])
 goalPuzzle = Puzzle([[1,2,3],[8,0,4],[7,6,5]])
 
@@ -25,7 +28,7 @@ parentNode = Node(Puzzle([[]]),None,[])
 node = Node(initialPuzzle,parentNode,[])     #root
 
 visitedNodes = []                            # nodes visited in order 
-queue = deque()                              # puzzles list to become nodes
+queue = deque()                              # puzzles queue to become nodes 
 queue.append(node.data)
 
 clearList = [[],[],[]]
@@ -37,7 +40,7 @@ while (isGoalPuzzle == False):
     node.children = []                       # clear children from previous node
     visitedNodes.append(node)      
 
-    if (node.data.isGoal()):                 # check if it is Goal Board !!!!!
+    if (node.data.isGoal()):                 # check if it is Goal Board 
         print("\n Found Goal Board: ")
         print(node.data.printBoard())
         isGoalPuzzle = True
@@ -50,7 +53,7 @@ while (isGoalPuzzle == False):
     childrenList = node.data.getNeighbors()
 
     for i in childrenList:
-        for j in visitedNodes:                  # compare children puzzles to nodes.data visited
+        for j in visitedNodes:                  # compare children puzzles to nodes visited
             if (i.getBoard() == j.data.getBoard()): 
                 i.changeSelfBoard = clearList
                
