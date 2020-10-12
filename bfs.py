@@ -69,8 +69,6 @@ while (isGoalPuzzle == False):
     childrenList = tempPuzzle.getNeighbors()             # generate children
     
     for j in childrenList:
-        edges.append(((len(visitedPuzzle) - 1), ((len(visitedPuzzle)-1) + (childrenList.index(j)+1))))
-        # print(edges)
         for z in visitedPuzzle:
             if (j.getBoard() == z.getBoard()):
                 #print("ENTERED")                         #check if it is entering at least once 
@@ -78,7 +76,9 @@ while (isGoalPuzzle == False):
                          
         
         if( j.getBoard() != clearList):
-            listPuzzle.append(j)    
+            listPuzzle.append(j)
+            edges.append(((len(visitedPuzzle) - 1), ((len(visitedPuzzle)-1) + (childrenList.index(j)+1))))
+            print(edges)
    
     i = i + 1
     
