@@ -15,6 +15,7 @@ class Puzzle:
         return self.boardsEqual(goalBoard)
 
     #Takes in itself, returns list of possible moves to make
+    #return type is Puzzle
     def getNeighbors(self):
         neighborBoards = [] #holds all the new boards we make
         holeRow = 0
@@ -40,7 +41,7 @@ class Puzzle:
             copiedBoard[holeRow-1][holeCol] = 0
             copiedBoard[holeRow][holeCol] = tempVal
             neighborBoards.append(Puzzle(copiedBoard))
-            print("Attempted up move and added to list")
+            #print("Attempted up move and added to list")
         
         #attempt left move
         if(holeCol-1 >= 0):
@@ -49,7 +50,7 @@ class Puzzle:
             copiedBoard[holeRow][holeCol-1] = 0
             copiedBoard[holeRow][holeCol] = tempVal
             neighborBoards.append(Puzzle(copiedBoard))
-            print("Attempted left move and added to list")
+            #print("Attempted left move and added to list")
 
         #attempt right move
         if(holeCol+1 <= 2):
@@ -58,7 +59,7 @@ class Puzzle:
             copiedBoard[holeRow][holeCol+1] = 0
             copiedBoard[holeRow][holeCol] = tempVal
             neighborBoards.append(Puzzle(copiedBoard))
-            print("Attempted right move and added to list")
+            #print("Attempted right move and added to list")
 
         #attempt down move
         if(holeRow+1 <= 2):
@@ -67,7 +68,7 @@ class Puzzle:
             copiedBoard[holeRow+1][holeCol] = 0
             copiedBoard[holeRow][holeCol] = tempVal
             neighborBoards.append(Puzzle(copiedBoard))
-            print("Attempted down move and added to list")
+            #print("Attempted down move and added to list")
 
         return neighborBoards
 

@@ -33,4 +33,16 @@ class Node:
             print("Bad type for print")
         else:
             return self.data.printBoard()
+
+    def generateNextMoves(self):
+        listOfMoves = []
+        listOfMoves = self.data.getNeighbors()
+
+        return listOfMoves
+
+    def getBoardString(self):
+        return self.data.printBoardString()
+
+    def getBoard(self):
+        return self.data.getBoard()
     
