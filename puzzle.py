@@ -1,4 +1,5 @@
 import copy
+from igraph import *
 
 class Puzzle:
     def __init__(self, boardData):
@@ -236,3 +237,47 @@ class Puzzle:
             tempString += "\n"
 
         return tempString
+
+    def graphBfs(self, numVert, edges, boardString):
+        # Create graph
+        g = Graph(directed=True)
+        # print(numVert, boardString)
+        # Add 5 vertices
+        # g.add_vertices(10)  #you can test with hardcoded vertices and edges to see map
+        g.add_vertices(numVert)
+        # print(edges)
+
+        # Add ids and labels to vertices
+        for i in range(len(g.vs)):
+            g.vs[i]["id"]= i
+            g.vs[i]["label"]= str(boardString[i])
+        # Add edges
+        # g.add_edges([(0,1),(0,2),(0,3),(1,4),(2,5),(2,6),(2,7),(3,8),(4,9)]) #you can test with hardcoded vertices and edges to see map
+        g.add_edges(edges)
+
+        visual_style = {}
+
+        out_name = "bfs.png"
+
+        # Set bbox and margin
+        visual_style["bbox"] = (2000,2000)
+        visual_style["margin"] = 40
+        
+        # Set vertex colours
+        visual_style["vertex_color"] = 'white'
+
+        # Set vertex size
+        visual_style["vertex_size"] = 65
+        visual_style["vertex_shape"] = 'square'
+        # Set vertex lable size
+        visual_style["vertex_label_size"] = 15
+
+        # Don't curve the edges
+        visual_style["edge_curved"] = False
+
+        # Set the layout
+        my_layout = g.layout_lgl()
+        visual_style["layout"] = my_layout
+
+        # Plot the graph
+        plot(g, out_name, **visual_style)

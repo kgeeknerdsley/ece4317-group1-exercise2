@@ -40,6 +40,8 @@ visitedPuzzle = []
 
 tempPuzzle = Puzzle([[],[],[]])
 clearList = [[],[],[]]
+puzzleStrings = []
+edges = []
 
 i = 0
 
@@ -49,21 +51,26 @@ while (isGoalPuzzle == False):
     
     print("Puzzle being expanded:")  
     print(tempPuzzle.printBoard()) 
+    print("\n step ", len(visitedPuzzle))
+    puzzleStrings.append(tempPuzzle.printBoardString())
     print("\n")
-
     if (tempPuzzle.isGoal()):                           #check if board is the goal one, if yes break the loop
         print("\n Found Goal board :")
         print(tempPuzzle.printBoard())
         isGoalPuzzle = True
         visitedPuzzle.append(tempPuzzle)
+        puzzleStrings.append(tempPuzzle.printBoardString())
         print("Number of visited Puzzles:", len(visitedPuzzle))
+        tempPuzzle.graphBfs((len(visitedPuzzle)+1), edges, puzzleStrings)
         break 
     
     visitedPuzzle.append(tempPuzzle)
 
-    childrenList = tempPuzzle.getNeighbors()             # generate children 
-
+    childrenList = tempPuzzle.getNeighbors()             # generate children
+    
     for j in childrenList:
+        edges.append(((len(visitedPuzzle) - 1), ((len(visitedPuzzle)-1) + (childrenList.index(j)+1))))
+        # print(edges)
         for z in visitedPuzzle:
             if (j.getBoard() == z.getBoard()):
                 #print("ENTERED")                         #check if it is entering at least once 
@@ -78,9 +85,3 @@ while (isGoalPuzzle == False):
     #print(i)
     #print(" List Puzzle size:")
     #print(len(listPuzzle))
-    
-
-    
-
-
-
