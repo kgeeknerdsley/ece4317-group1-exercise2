@@ -34,3 +34,9 @@ class Node:
         else:
             return self.data.printBoard()
     
+print("\n")
+print("If you see this, Node class has no errors.")
+print("Text signature: " + str(Node.__text_signature__))
+print("Confirm the class loads to memory: " + str(Node.__instancecheck__))
+print("Base address should be printed below: ")
+print(Node.__init__)
