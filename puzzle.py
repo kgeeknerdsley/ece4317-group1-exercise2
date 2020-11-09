@@ -236,3 +236,10 @@ class Puzzle:
             tempString += "\n"
 
         return tempString
+   
+print("\n")
+print("If you see this, Puzzle class has no errors.")
+print("Text signature: " + str(Puzzle.__text_signature__))
+print("Confirm the class loads to memory: " + str(Puzzle.__instancecheck__))
+print("Base address should be printed below: ")
+print(Puzzle.__init__)
